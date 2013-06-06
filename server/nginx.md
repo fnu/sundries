@@ -11,6 +11,8 @@ cd nginx-1.4.1
 #### 配置
 请根据业务需求, 更改下面的配置信息
 ```
+cd /web/soft/nginx-1.4.1
+
 ./configure --prefix=/web/nginx \
     --user=nginx --group=web \
     --with-http_realip_module \
