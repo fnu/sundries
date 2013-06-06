@@ -1,4 +1,17 @@
-## Yum安装的基础库, Git, Memcache 和 MySql
+# 文档说明:
+为线上环境的 Centos 安装 MySql, Nginx, PHP(Apc,PHPRedis, Memcached), Git, Redis, Memcached 等服务.
+
+## 约定
+安装的软件下载目录: `/web/soft/`  
+Web的整体目录为:`/web/`  
+PHP: `/web/php/`  
+Nginx: `/web/nginx/`  
+MySql采用Yum安装, 但数据目录改为: `/web/mysql/data/`  
+日志目录: `/web/logs/` , 根据服务的不同, 再分子目录.
+
+
+
+### Yum安装的基础库, Git, Memcache 和 MySql
 
 ```
 yum install -y \
