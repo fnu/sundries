@@ -1,9 +1,10 @@
 # 文档说明:
 为线上环境的 Centos 安装 MySql, Nginx, PHP(Apc,PHPRedis, Memcached), Git, Redis, Memcached 等服务.
 
-## 约定
+## 目录约定
 安装的软件下载目录: `/web/soft/`  
-Web的整体目录为:`/web/`  
+Web的整体目录:`/web/`  
+Web的站点主目录: `/web/wwwroot/`  
 PHP: `/web/php/`  
 Nginx: `/web/nginx/`  
 MySql采用Yum安装, 但数据目录改为: `/web/mysql/data/`  
@@ -13,13 +14,14 @@ MySql采用Yum安装, 但数据目录改为: `/web/mysql/data/`
 ```
 mkdir -p /web/soft/
 cd /web/
-mkdir -p nginx php nginx mysql/data logs/nginx logs/fpm/ 
+mkdir -p nginx php nginx wwwroot mysql/data logs/nginx logs/fpm
 ```
 
 ### Yum 安装的基础库, Git, Memcache 和 MySql
 
 ```
 yum install -y \
+    gcc auto gcc-c++ libtool \
     git \
     mysql.x86_64 mysql-server.x86_64 \
     mysql-libs.x86_64 mysql-devel.x86_64 \
@@ -30,7 +32,7 @@ yum install -y \
     libjpeg-turbo.x86_64 libjpeg-turbo-devel.x86_64 \
     libpng.x86_64 libpng-devel.x86_64 \
     libXpm.x86_64 libXpm-devel.x86_64 \
-    freetype.x86_64 freetype-devel.x86_64 \
+    freetype.x86_64 freetype-devel.x86_64
 ```
 
 ### 安装 libmcrypt
