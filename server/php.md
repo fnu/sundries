@@ -54,9 +54,11 @@ wget http://cn2.php.net/get/php-5.4.15.tar.gz/from/this/mirror
 wget http://nginx.org/download/nginx-1.4.1.tar.gz
 ```
 
-
-### 安装PHP
-
+## 安装 PHP
+```
+cd /web/soft/
+tar zxf php-5.4.15.tar.gz
+```
 
 #### PHPRedis 扩展
 ```
@@ -147,3 +149,5 @@ cd /web/soft/php-5.4.15/
 cp php.ini-production /web/php/lib/php.ini
 ```
 
+
+Ok, PHP 的安装部分差不多就这样子.
