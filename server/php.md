@@ -119,7 +119,7 @@ cd /web/soft/php-5.4.15/
     --enable-memcache 
 ```
 
-如果上面的配置没有出错, 那么, 就可以开始编译和测试,和安装.
+如果上面的配置没有出错, 那么, 就可以开始编译,测试,和安装.
 ```
 make && make test 
 make install
