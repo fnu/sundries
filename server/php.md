@@ -21,7 +21,7 @@ mkdir -p nginx php nginx wwwroot mysql/data logs/nginx logs/fpm
 
 ```
 yum install -y \
-    gcc auto gcc-c++ libtool \
+    gcc auto gcc-c++ libtool make \
     git \
     mysql.x86_64 mysql-server.x86_64 \
     mysql-libs.x86_64 mysql-devel.x86_64 \
