@@ -17,6 +17,14 @@ cd /web/
 mkdir -p nginx php nginx wwwroot mysql/data logs/nginx logs/fpm
 ```
 
+## 软件版本约定
+由于 php, nginx 等软件的版本更新很频繁, 所以把版本号设置为变量, 方便本文档的更新
+
+```
+PHP_VER="php-5.4.16"
+NGINX_VER="nginx-1.4.1"
+```
+
 ### Yum 安装的基础库, Git, Memcache 和 MySql
 
 ```
@@ -52,25 +60,25 @@ ldconfig
 ### 下载 PHP, Nginx 等软件
 ```
 cd /web/soft/
-wget http://cn2.php.net/get/php-5.4.15.tar.gz/from/this/mirror
-wget http://nginx.org/download/nginx-1.4.1.tar.gz
+wget http://cn2.php.net/get/$PHP_VER.tar.gz/from/this/mirror
+wget http://nginx.org/download/$NGINX_VER.tar.gz
 ```
 
 ## 安装 PHP
 ```
 cd /web/soft/
-tar zxf php-5.4.15.tar.gz
+tar zxf $PHP_VER.tar.gz
 ```
 
 #### PHPRedis 扩展
 ```
-cd /web/soft/php-5.4.15/ext/
+cd /web/soft/$PHP_VER/ext/
 git clone git://github.com/nicolasff/phpredis.git redis
 ```
 
 #### apc 扩展
 ```
-cd /web/soft/php-5.4.15/ext/
+cd /web/soft/$PHP_VER/ext/
 wget http://pecl.php.net/get/APC-3.1.13.tgz
 tar zxf APC-3.1.13.tgz
 mv APC-3.1.13 apc
@@ -79,7 +87,7 @@ mv APC-3.1.13.tgz /web/soft/
 
 #### memcache 扩展
 ```
-cd /web/soft/php-5.4.15/ext/
+cd /web/soft/$PHP_VER/ext/
 wget http://pecl.php.net/get/memcache-2.2.7.tgz
 tar zxf memcache-2.2.7.tgz
 mv memcache-2.2.7 memcache
@@ -90,7 +98,7 @@ mv memcache-2.2.7.tgz /web/soft/
 #### 重新生成 configure 脚本
 只有更新了 configure 脚本, 才能在配置中识别出新增加的PHP扩展
 ```
-cd /web/soft/php-5.4.15/
+cd /web/soft/$PHP_VER/
 
 rm -f configure
 ./buildconf --force
@@ -105,7 +113,7 @@ ln -s /usr/lib64/libXpm.so /usr/lib/libXpm.so
 #### 配置
 请根据业务需求, 更改下面的配置信息
 ```
-cd /web/soft/php-5.4.15/
+cd /web/soft/$PHP_VER/
 ./configure  \
     --prefix=/web/php \
     --enable-fpm \
@@ -131,7 +139,7 @@ make install
 
 #### fpm 管理脚本
 ```
-cd /web/soft/php-5.4.15/
+cd /web/soft/$PHP_VER/
 cp sapi/fpm/init.d.php-fpm /etc/init.d/php-fpm
 chmod +x /etc/init.d/php-fpm
 chkconfig --add php-fpm
@@ -140,14 +148,14 @@ chkconfig --add php-fpm
 #### fpm 配置
 注意修改 fpm 的运行身份, 日志及端口等.
 ```
-cd /web/soft/php-5.4.15/
+cd /web/soft/$PHP_VER/
 cp /web/php/etc/php-fpm.conf.default /web/php/etc/php-fpm.conf
 ```
 
 #### 拷贝生产环境的 php.ini
 记得要修改 date.timezone = PRC, post, 等变量.
 ```
-cd /web/soft/php-5.4.15/
+cd /web/soft/$PHP_VER/
 cp php.ini-production /web/php/lib/php.ini
 ```
 
