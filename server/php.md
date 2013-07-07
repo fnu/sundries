@@ -14,7 +14,7 @@ MySql采用Yum安装, 但数据目录改为: `/web/mysql/data/`
 ```
 mkdir -p /web/soft/
 cd /web/
-mkdir -p nginx php nginx wwwroot mysql/data logs/nginx logs/fpm
+mkdir -p nginx php php/etc/pool.d/ nginx wwwroot mysql/data logs/nginx logs/fpm
 ```
 
 ## 软件版本约定
@@ -70,40 +70,6 @@ cd /web/soft/
 tar zxf $PHP_VER.tar.gz
 ```
 
-#### PHPRedis 扩展
-```
-cd /web/soft/$PHP_VER/ext/
-git clone git://github.com/nicolasff/phpredis.git redis
-```
-
-#### apc 扩展
-```
-cd /web/soft/$PHP_VER/ext/
-wget http://pecl.php.net/get/APC-3.1.13.tgz
-tar zxf APC-3.1.13.tgz
-mv APC-3.1.13 apc
-mv APC-3.1.13.tgz /web/soft/
-```
-
-#### memcache 扩展
-```
-cd /web/soft/$PHP_VER/ext/
-wget http://pecl.php.net/get/memcache-2.2.7.tgz
-tar zxf memcache-2.2.7.tgz
-mv memcache-2.2.7 memcache
-mv memcache-2.2.7.tgz /web/soft/
-
-```
-
-#### 重新生成 configure 脚本
-只有更新了 configure 脚本, 才能在配置中识别出新增加的PHP扩展
-```
-cd /web/soft/$PHP_VER/
-
-rm -f configure
-./buildconf --force
-```
-
 #### libXpm 要在 /usr/lib 中建个软链接
 由于 libXpm.so 默认保存在 `/usr/lib64` 下, PHP找不到它, 所以需要建立一个软链接过来.
 ```
@@ -113,7 +79,6 @@ ln -s /usr/lib64/libXpm.so /usr/lib/libXpm.so
 #### 配置
 请根据业务需求, 更改下面的配置信息
 ```
-cd /web/soft/$PHP_VER/
 ./configure  \
     --prefix=/web/php \
     --enable-fpm \
@@ -121,14 +86,9 @@ cd /web/soft/$PHP_VER/
     --with-zlib-dir --enable-zip --with-curl --with-mcrypt --enable-mbstring=all --with-mhash \
     --enable-gd-native-ttf --enable-ftp --with-iconv --with-xpm-dir  \
     --with-libxml-dir --with-pcre-regex \
-    --with-mysql --with-mysqli \
+    --with-mysql \
     --enable-pdo --with-pdo-sqlite --with-pdo-mysql \
-    --with-pdo-dblib \
-    --enable-redis \
-    --enable-soap  --with-xmlrpc  \
-    --with-openssl \
-    --enable-apc \
-    --enable-memcache 
+    --with-openssl
 ```
 
 如果上面的配置没有出错, 那么, 就可以开始编译, 测试, 和安装.
@@ -157,6 +117,60 @@ cp /web/php/etc/php-fpm.conf.default /web/php/etc/php-fpm.conf
 ```
 cd /web/soft/$PHP_VER/
 cp php.ini-production /web/php/lib/php.ini
+```
+
+#### 创建 /etc/ 下的软连接
+```
+ln -s /web/php/etc /etc/php
+```
+
+## 安装PHP的第三方扩展
+
+#### PHPRedis 扩展
+```
+cd /web/soft/
+git clone git://github.com/nicolasff/phpredis.git phpredis
+cd /web/soft/phpredis
+/web/php/bin/phpize
+
+./configure --enable-redis --with-php-config=/web/php/bin/php-config
+
+make && make test
+make install
+
+```
+
+#### apc 扩展
+```
+cd /web/soft/
+wget http://pecl.php.net/get/APC-3.1.13.tgz
+tar zxf APC-3.1.13.tgz
+mv APC-3.1.13 apc
+cd /web/soft/apc
+
+/web/php/bin/phpize
+
+./configure --enable-apc --with-php-config=/web/php/bin/php-config
+
+make && make test
+make install
+
+```
+
+#### memcache 扩展
+```
+cd /web/soft/
+wget http://pecl.php.net/get/memcache-2.2.7.tgz
+tar zxf memcache-2.2.7.tgz
+mv memcache-2.2.7 memcache
+cd /web/soft/memcache
+
+/web/php/bin/phpize
+
+./configure --enable-memcache --with-php-config=/web/php/bin/php-config
+
+make && make test
+make install
 ```
 
 

@@ -31,6 +31,11 @@ make
 make install
 ```
 
+#### 创建 /etc/ 下的软连接
+```
+ln -s /web/nginx/conf /etc/php
+```
+
 #### Nginx 管理脚本
 脚本文件可以参考 [wiki.nginx.org](http://wiki.nginx.org/RedHatNginxInitScript "/etc/init.d/nginx") 上面的示例.
 
