@@ -21,7 +21,7 @@ mkdir -p nginx php nginx wwwroot mysql/data logs/nginx logs/fpm
 由于 php, nginx 等软件的版本更新很频繁, 所以把版本号设置为变量, 方便本文档的更新
 
 ```
-PHP_VER="php-5.4.16"
+PHP_VER="php-5.4.17"
 NGINX_VER="nginx-1.4.1"
 ```
 
