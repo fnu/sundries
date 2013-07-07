@@ -33,7 +33,7 @@ make install
 
 #### 创建 /etc/ 下的软连接
 ```
-ln -s /web/nginx/conf /etc/php
+ln -s /web/nginx/conf /etc/nginx
 ```
 
 #### Nginx 管理脚本
