@@ -60,7 +60,7 @@ ldconfig
 ### 下载 PHP, Nginx 等软件
 ```
 cd /web/soft/
-wget http://cn2.php.net/get/$PHP_VER.tar.gz/from/this/mirror
+wget http://www.php.net/get/$PHP_VER.tar.gz/from/this/mirror
 wget http://nginx.org/download/$NGINX_VER.tar.gz
 ```
 
