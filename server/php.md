@@ -51,7 +51,7 @@ tar zxf libmcrypt-2.5.8.tar.gz
 
 cd libmcrypt-2.5.8
 ./configure
-make && make install
+make -j16 && make install
 
 ldconfig
 ```
@@ -95,7 +95,7 @@ cd /web/soft/$PHP_VER/
 
 如果上面的配置没有出错, 那么, 就可以开始编译, 测试, 和安装.
 ```
-make && make test 
+make -j16 && make test 
 make install
 ```
 
@@ -137,7 +137,7 @@ cd /web/soft/phpredis
 
 ./configure --enable-redis --with-php-config=/web/php/bin/php-config
 
-make && make test
+make -j16 && make test
 make install
 
 ```
@@ -154,7 +154,7 @@ cd /web/soft/apc
 
 ./configure --enable-apc --with-php-config=/web/php/bin/php-config
 
-make && make test
+make -j16 && make test
 make install
 
 ```
@@ -171,7 +171,7 @@ cd /web/soft/memcache
 
 ./configure --enable-memcache --with-php-config=/web/php/bin/php-config
 
-make && make test
+make -j16 && make test
 make install
 ```
 
