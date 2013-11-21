@@ -90,7 +90,8 @@ cd /web/soft/${VER_PHP}/
 ```
 
 如果上面的配置没有出错, 那么, 就可以开始编译, 测试, 和安装.
-```
+
+```bash
 make -j16 && make test 
 make install
 ```
