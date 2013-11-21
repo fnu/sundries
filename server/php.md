@@ -124,6 +124,9 @@ cp php.ini-production /web/php/lib/php.ini
 ```
 
 #### 创建 /etc/ 下的软连接
+因为我们并没有安装在通用路径下,
+所以, 可以创建一下软连接, 方便以后管理.
+
 ```
 ln -s /web/php/etc /etc/php
 ```
