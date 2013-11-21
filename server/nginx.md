@@ -1,5 +1,11 @@
 ## 安装 Nginx
 
+### 可能需要用到的库
++ `pcre-devel` : Nginx 的 `rewrite` 模块需要用到此库
++ `openssl`, `openssl-devel`: 加密库, 主要的密码算法, 常用的密钥和证书封装管理功能以及SSL协议等
+
+可能通过简单的 `yum` 命令安装上面的库
+
 #### Nginx 版本
 
 ```bash
