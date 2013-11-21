@@ -52,13 +52,16 @@ make install
 ```
 
 #### 创建 /etc/ 下的软连接
+因为我们并没有安装在通用路径下,
+所以, 如果没有安装过Nginx, 可以创建一下软连接, 方便以后管理.
 
 ```bash
 ln -s /web/nginx/conf /etc/nginx
+ln -s /web/nginx/sbin/nginx /usr/sbin/nginx
 ```
 
 #### Nginx 管理脚本
 脚本文件可以参考 [wiki.nginx.org](http://wiki.nginx.org/RedHatNginxInitScript "/etc/init.d/nginx") 上面的示例.
 
-注意修改 `nginx="/usr/sbin/nginx"` , `NGINX_CONF_FILE="/etc/nginx/nginx.conf"` 这两项配置
+注意 `nginx="/usr/sbin/nginx"` , `NGINX_CONF_FILE="/etc/nginx/nginx.conf"` 这两项配置
 
