@@ -66,7 +66,8 @@ ln -s /web/nginx/sbin/nginx /usr/sbin/nginx
 注意 `nginx="/usr/sbin/nginx"` , `NGINX_CONF_FILE="/etc/nginx/nginx.conf"` 这两项配置
 
 ```bash
-wget http://wiki.nginx.org/RedHatNginxInitScript --output-document=/etc/init.d/nginx
+wget "http://wiki.nginx.org/index.php?title=RedHatNginxInitScript&action=raw&anchor=nginx" --output-document=/etc/init.d/nginx
+chmod +x /etc/init.d/nginx
 chkconfig --add nginx
 chkconfig --list nginx
 ```
