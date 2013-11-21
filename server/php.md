@@ -73,6 +73,7 @@ ln -s /usr/lib64/libXpm.so /usr/lib/libXpm.so
 
 #### 配置
 请根据业务需求, 更改下面的配置信息
+
 ```
 cd /web/soft/${VER_PHP}/
 
