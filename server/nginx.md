@@ -17,7 +17,7 @@ wget http://nginx.org/download/nginx-${VER_NGINX}.tar.gz
 cd /web/soft/
 tar zxf nginx-${VER_NGINX}.tar.gz
 
-cd nginx-1.4.1
+cd nginx-${VER_NGINX}
 ```
 
 #### 配置
