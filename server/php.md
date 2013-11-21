@@ -143,7 +143,25 @@ make install
 
 ```
 
-#### apc 扩展
+#### xCache 扩展 (与 Apc 扩展 二选一)
+`xCache` 一个不错的PHP优化扩展, 也 `Apc` 功能是很接近, 我个人比较推荐用 `xCache`
+
+```bash
+cd /web/soft/
+wget "http://xcache.lighttpd.net/pub/Releases/3.1.0/xcache-3.1.0.tar.gz"
+tar zxf xcache-3.1.0.tar.gz
+cd /web/soft/xcache-3.1.0
+/web/php/bin/phpize
+
+./configure --enable-xcache  --with-php-config=/web/php/bin/php-config
+
+make -j16 && make test
+make install
+
+```
+
+#### Apc 扩展 (与 xCache 扩展 二选一)
+
 ```bash
 cd /web/soft/
 wget http://pecl.php.net/get/APC-3.1.13.tgz
