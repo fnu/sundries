@@ -39,6 +39,7 @@ yum install -y \
 
 ### 安装 libmcrypt
 libmcrypt 软件Centos的仓库并没有提供, 需要自行下载安装.
+
 ```bash
 cd /web/soft/
 tar zxf libmcrypt-2.5.8.tar.gz
