@@ -1,5 +1,5 @@
 # 文档说明:
-为线上环境的 Centos 安装 MySql, Nginx, PHP(Apc,PHPRedis, Memcached), Git, Redis, Memcached 等服务.
+为线上环境的 Centos 安装 Nginx, PHP(Apc,PHPRedis), Git, Redis 等服务.
 
 ## 目录约定
 安装的软件下载目录: `/web/soft/`  
@@ -11,29 +11,23 @@ MySql采用Yum安装, 但数据目录改为: `/web/mysql/data/`
 日志目录: `/web/logs/` , 根据服务的不同, 再分子目录.
 
 创建目录:
-```
+
+```bash
 mkdir -p /web/soft/
 cd /web/
-mkdir -p nginx php php/etc/pool.d/ nginx wwwroot mysql/data logs/nginx logs/fpm
+mkdir -p nginx php php/etc/pool.d/ nginx wwwroot logs/nginx logs/fpm
 ```
 
 ## 软件版本约定
-由于 php, nginx 等软件的版本更新很频繁, 所以把版本号设置为变量, 方便本文档的更新
-
-```
-PHP_VER="php-5.4.17"
-NGINX_VER="nginx-1.4.1"
+```bash
+VER_PHP="php-5.4.22"
 ```
 
-### Yum 安装的基础库, Git, Memcache 和 MySql
+### Yum 安装基础库
 
-```
+```bash
 yum install -y \
     gcc auto gcc-c++ libtool make \
-    git \
-    mysql.x86_64 mysql-server.x86_64 \
-    mysql-libs.x86_64 mysql-devel.x86_64 \
-    libmemcached.x86_64 libmemcached-devel.x86_64 memcached.x86_64 memcached-devel.x86_64 \
     pcre-devel.x86_64 \
     libxml2.x86_64 libxml2-devel.x86_64 \
     curl.x86_64 libcurl.x86_64 libcurl-devel.x86_64 \
@@ -45,7 +39,7 @@ yum install -y \
 
 ### 安装 libmcrypt
 libmcrypt 软件Centos的仓库并没有提供, 需要自行下载安装.
-```
+```bash
 cd /web/soft/
 tar zxf libmcrypt-2.5.8.tar.gz
 
@@ -58,16 +52,16 @@ ldconfig
 
 
 ### 下载 PHP, Nginx 等软件
-```
+```bash
 cd /web/soft/
-wget http://www.php.net/get/$PHP_VER.tar.gz/from/this/mirror
+wget http://www.php.net/get/${VER_PHP}.tar.gz/from/this/mirror
 wget http://nginx.org/download/$NGINX_VER.tar.gz
 ```
 
 ## 安装 PHP
 ```
 cd /web/soft/
-tar zxf $PHP_VER.tar.gz
+tar zxf ${VER_PHP}.tar.gz
 ```
 
 #### libXpm 要在 /usr/lib 中建个软链接
@@ -79,7 +73,7 @@ ln -s /usr/lib64/libXpm.so /usr/lib/libXpm.so
 #### 配置
 请根据业务需求, 更改下面的配置信息
 ```
-cd /web/soft/$PHP_VER/
+cd /web/soft/${VER_PHP}/
 
 ./configure  \
     --prefix=/web/php \
@@ -100,8 +94,8 @@ make install
 ```
 
 #### fpm 管理脚本
-```
-cd /web/soft/$PHP_VER/
+```bash
+cd /web/soft/${VER_PHP}/
 cp sapi/fpm/init.d.php-fpm /etc/init.d/php-fpm
 chmod +x /etc/init.d/php-fpm
 chkconfig --add php-fpm
@@ -110,14 +104,14 @@ chkconfig --add php-fpm
 #### fpm 配置
 注意修改 fpm 的运行身份, 日志及端口等.
 ```
-cd /web/soft/$PHP_VER/
+cd /web/soft/${VER_PHP}/
 cp /web/php/etc/php-fpm.conf.default /web/php/etc/php-fpm.conf
 ```
 
 #### 拷贝生产环境的 php.ini
 记得要修改 date.timezone = PRC, post, 等变量.
-```
-cd /web/soft/$PHP_VER/
+```bash
+cd /web/soft/${VER_PHP}/
 cp php.ini-production /web/php/lib/php.ini
 ```
 
@@ -129,7 +123,7 @@ ln -s /web/php/etc /etc/php
 ## 安装PHP的第三方扩展
 
 #### PHPRedis 扩展
-```
+```bash
 cd /web/soft/
 git clone git://github.com/nicolasff/phpredis.git phpredis
 cd /web/soft/phpredis
@@ -143,7 +137,7 @@ make install
 ```
 
 #### apc 扩展
-```
+```bash
 cd /web/soft/
 wget http://pecl.php.net/get/APC-3.1.13.tgz
 tar zxf APC-3.1.13.tgz
@@ -160,7 +154,7 @@ make install
 ```
 
 #### memcache 扩展
-```
+```bash
 cd /web/soft/
 wget http://pecl.php.net/get/memcache-2.2.7.tgz
 tar zxf memcache-2.2.7.tgz
