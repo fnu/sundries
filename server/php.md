@@ -52,11 +52,10 @@ ldconfig
 ```
 
 
-### 下载 PHP, Nginx 等软件
+### 下载 PHP
 ```bash
 cd /web/soft/
 wget http://www.php.net/get/${VER_PHP}.tar.gz/from/this/mirror
-wget http://nginx.org/download/$NGINX_VER.tar.gz
 ```
 
 ## 安装 PHP
@@ -67,6 +66,7 @@ tar zxf ${VER_PHP}.tar.gz
 
 #### libXpm 要在 /usr/lib 中建个软链接
 由于 libXpm.so 默认保存在 `/usr/lib64` 下, PHP找不到它, 所以需要建立一个软链接过来.
+
 ```
 ln -s /usr/lib64/libXpm.so /usr/lib/libXpm.so
 ```
