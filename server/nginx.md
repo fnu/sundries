@@ -69,7 +69,10 @@ ln -s /web/nginx/sbin/nginx /usr/sbin/nginx
 wget "http://wiki.nginx.org/index.php?title=RedHatNginxInitScript&action=raw&anchor=nginx" --output-document=/etc/init.d/nginx
 chmod +x /etc/init.d/nginx
 chkconfig --add nginx
+chkconfig --level 2345 nginx on
 chkconfig --list nginx
 ```
 
+#### 其它
+这里有一篇关于`Nginx`配置优化的文章, 或许您也可以读一读: [优化指南](http://www.oschina.net/translate/nginx-setup)
 
