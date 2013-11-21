@@ -97,6 +97,7 @@ make install
 ```
 
 #### fpm 管理脚本
+
 ```bash
 cd /web/soft/${VER_PHP}/
 cp sapi/fpm/init.d.php-fpm /etc/init.d/php-fpm
@@ -106,13 +107,15 @@ chkconfig --add php-fpm
 
 #### fpm 配置
 注意修改 fpm 的运行身份, 日志及端口等.
-```
+
+```bash
 cd /web/soft/${VER_PHP}/
 cp /web/php/etc/php-fpm.conf.default /web/php/etc/php-fpm.conf
 ```
 
 #### 拷贝生产环境的 php.ini
 记得要修改 date.timezone = PRC, post, 等变量.
+
 ```bash
 cd /web/soft/${VER_PHP}/
 cp php.ini-production /web/php/lib/php.ini
@@ -126,6 +129,7 @@ ln -s /web/php/etc /etc/php
 ## 安装PHP的第三方扩展
 
 #### PHPRedis 扩展
+
 ```bash
 cd /web/soft/
 git clone git://github.com/nicolasff/phpredis.git phpredis
@@ -157,6 +161,7 @@ make install
 ```
 
 #### memcache 扩展
+
 ```bash
 cd /web/soft/
 wget http://pecl.php.net/get/memcache-2.2.7.tgz
