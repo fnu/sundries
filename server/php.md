@@ -7,7 +7,6 @@ Web的整体目录:`/web/`
 Web的站点主目录: `/web/wwwroot/`  
 PHP: `/web/php/`  
 Nginx: `/web/nginx/`  
-MySql采用Yum安装, 但数据目录改为: `/web/mysql/data/`  
 日志目录: `/web/logs/` , 根据服务的不同, 再分子目录.
 
 创建目录:
