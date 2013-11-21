@@ -1,12 +1,19 @@
 ## 安装 Nginx
 
 #### Nginx 版本
+
 ```bash
 VER_NGINX="1.4.4"
 ```
 
-#### 解压
+#### 下载Nginx
+
+```bash
+wget http://nginx.org/download/nginx-${VER_NGINX}.tar.gz
 ```
+
+#### 解压
+```bash
 cd /web/soft/
 tar zxf nginx-${VER_NGINX}.tar.gz
 
@@ -15,7 +22,8 @@ cd nginx-1.4.1
 
 #### 配置
 请根据业务需求, 更改下面的配置信息
-```
+
+```bash
 cd /web/soft/nginx-${VER_NGINX}
 
 ./configure --prefix=/web/nginx \
@@ -29,15 +37,17 @@ cd /web/soft/nginx-${VER_NGINX}
 
 make
 ```
+
 #### 安装
 如果编译没有问题, 那么就可以安装了
 
-```
+```bash
 make install
 ```
 
 #### 创建 /etc/ 下的软连接
-```
+
+```bash
 ln -s /web/nginx/conf /etc/nginx
 ```
 
