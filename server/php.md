@@ -123,11 +123,13 @@ cp php.ini-production /web/php/lib/php.ini
 ```
 
 #### 创建 /etc/ 下的软连接
-因为我们并没有安装在通用路径下,
-所以, 可以创建一下软连接, 方便以后管理.
+我们并没有安装在通用路径下, 可以创建一下软连接, 方便以后管理.  
+创建软件之前, 强烈建议先检查一下原来系统有没有对应的文件, 以防被覆盖.
+
 
 ```bash
 ln -s /web/php/etc /etc/php
+ln -s /web/php/bin/php /usr/bin/php
 ```
 
 ## 安装PHP的第三方扩展
