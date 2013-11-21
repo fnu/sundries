@@ -1,9 +1,14 @@
 ## 安装 Nginx
 
+#### Nginx 版本
+```bash
+VER_NGINX="1.4.4"
+```
+
 #### 解压
 ```
 cd /web/soft/
-tar zxf nginx-1.4.1.tar.gz
+tar zxf nginx-${VER_NGINX}.tar.gz
 
 cd nginx-1.4.1
 ```
@@ -11,7 +16,7 @@ cd nginx-1.4.1
 #### 配置
 请根据业务需求, 更改下面的配置信息
 ```
-cd /web/soft/nginx-1.4.1
+cd /web/soft/nginx-${VER_NGINX}
 
 ./configure --prefix=/web/nginx \
     --user=nginx --group=web \
