@@ -103,6 +103,8 @@ cd /web/soft/${VER_PHP}/
 cp sapi/fpm/init.d.php-fpm /etc/init.d/php-fpm
 chmod +x /etc/init.d/php-fpm
 chkconfig --add php-fpm
+chkconfig --level 2345 php-fpm on
+chkconfig --list php-fpm
 ```
 
 #### fpm 配置
