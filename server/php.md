@@ -127,13 +127,15 @@ cp php.ini-production /web/php/lib/php.ini
 因为我们并没有安装在通用路径下,
 所以, 可以创建一下软连接, 方便以后管理.
 
-```
+```bash
 ln -s /web/php/etc /etc/php
 ```
 
 ## 安装PHP的第三方扩展
+安装第三方扩展后, 记得修改 `php.ini` 文件, 不然扩展不会自动加载
 
-#### PHPRedis 扩展
+
+#### PHPRedis 扩展 (如果项目没有用到, 不需要安装)
 
 ```bash
 cd /web/soft/
@@ -183,7 +185,7 @@ make install
 
 ```
 
-#### memcache 扩展
+#### memcache 扩展 (如果项目没有用到, 不需要安装)
 
 ```bash
 cd /web/soft/
