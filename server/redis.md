@@ -51,7 +51,8 @@ make PREFIX=/web/redis/ install
 
 #### 管理脚本
 
-注意一些属性, 一般目录说明:
+注意一些属性, 一般目录说明
+
 + 配置: `/web/redis/etc/`
 + 日志: `/web/redis/var/logs/`
 + 数据: `/web/redis/var/dumps/`
