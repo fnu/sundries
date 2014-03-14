@@ -147,7 +147,7 @@ ln -s /web/php/bin/php /usr/bin/php
 ## Opcache 的配置
 因为 PHP 5.5.x 已经把 `zend Optimizer` 内置进来了, 所以没有太强烈理由去安装 `Xcache` / `Apc` 这些扩展了.
 但是, 需要在 ini 配置文件中, 添加类似于下面的配置, 具体的参数, 根据环境和需求再作调整.
-更多详细信息, 请看 (官方手册)[http://php.net/manual/zh/book.opcache.php]
+更多详细信息, 请看 [官方手册](http://php.net/manual/zh/book.opcache.php)
 
 ```ini
 zend_extension = opcache.so
@@ -195,6 +195,7 @@ cd /web/soft/
 ```
 
 在 php.ini 中, 增加配置:
+
 ```ini
 [Yaf]
 extension = yaf.so
