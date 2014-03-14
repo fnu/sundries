@@ -9,7 +9,7 @@
 #### Nginx 版本
 
 ```bash
-VER_NGINX="1.4.4"
+VER_NGINX="1.4.6"
 ```
 
 #### 下载Nginx
