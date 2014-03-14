@@ -2,12 +2,13 @@
 为线上环境的 Centos 安装 Nginx, PHP(Yaf, PHPRedis), Git, Redis 等服务.
 
 # 目录约定
-安装的软件下载目录: `/web/soft/`  
-Web的整体目录:`/web/`  
-Web的站点主目录: `/web/wwwroot/`  
-PHP: `/web/php/`  
-Nginx: `/web/nginx/`  
-日志目录: `/web/logs/` , 根据服务的不同, 再分子目录.
+
++ Web的整体目录:`/web/`
++ 安装的软件下载目录: `/web/soft/`
++ Web的站点主目录: `/web/wwwroot/`
++ PHP: `/web/php/`
++ Nginx: `/web/nginx/`
++ 日志目录: `/web/logs/` , 根据服务的不同, 再分子目录.
 
 创建目录:
 
@@ -179,6 +180,7 @@ make install
 ```
 
 在 php.ini 中, 增加配置:
+
 ```ini
 [redis]
 extension = redis.so
