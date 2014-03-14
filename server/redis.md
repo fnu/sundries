@@ -50,14 +50,47 @@ make PREFIX=/web/redis/ install
 ```
 
 #### 管理脚本
-注意修改其中的 `EXEC`, `CLIEXEC`, `CONF` 几个变量.
+
+注意一些属性, 一般目录说明:
++ 配置: `/web/redis/etc/`
++ 日志: `/web/redis/var/logs/`
++ 数据: `/web/redis/var/dumps/`
++ 程序: `/web/redis/bin/redis-server`
+
+由于 CentOS 默认没有 `update-rc.d` 这东东. 所以不支持官方自带的 `install_server.sh`.
+但是没关系, 拷贝一下配置文件, 改一改就行了.
 
 ```bash
 cp utils/redis_init_script /etc/init.d/redis_6379
+```
+
+默认的脚本并不支持 `chkconf`, 嗯, 改一改嘛, 在第2行的地方, 插入下面代码.
+
+```bash
+#
+# redis:6379          Start up the Redis server daemon
+#
+# chkconfig: 2345 55 25
+#
+### BEGIN INIT INFO
+# Provides: redis
+# Default-Start: 2 3 4 5
+# Default-Stop: 0 1 6
+# Short-Description: Start up the Redis server daemon
+### END INIT INFO
+
+# source function library
+. /etc/rc.d/init.d/functions
+
+```
+
+设置开机启动
+
+```bash
 chmod +x /etc/init.d/redis_6379
 chkconfig --add redis_6379
 chkconfig --level 2345 redis_6379 on
-chkconfig --listredis_6379
+chkconfig --list redis_6379
 ```
 
 
