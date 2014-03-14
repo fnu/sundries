@@ -16,18 +16,17 @@ VER_REDIS="redis-2.8.7"
 
 ```bash
 cd /web/soft/
-wget http://download.redis.io/releases/redis-${VER_REDIS}.tar.gz
+wget http://download.redis.io/releases/${VER_REDIS}.tar.gz
 ```
 
 #### 安装
 
 ```bash
 cd /web/soft/
-tar zxf redis-${VER_REDIS}.tar.gz
+tar zxf ${VER_REDIS}.tar.gz
 
-cd redis-${VER_REDIS}/
-make -j16
-make test
+cd ${VER_REDIS}/
+make -j16 && make test
 
 ```
 
