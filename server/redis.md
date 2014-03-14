@@ -26,9 +26,40 @@ cd /web/soft/
 tar zxf ${VER_REDIS}.tar.gz
 
 cd ${VER_REDIS}/
-make -j16 && make test
-
+make -j16
 ```
+
+如果需要做测试, 那么需要安装 `tcl` 这个软件
+
+```bash
+yum install tcl
+```
+
+测试
+
+```bash
+make test
+```
+
+目录初始化和安装Redis
+
+```bash
+mkdir -p /web/redis/bin /web/redis/etc /web/redis/var/dumps /web/redis/var/logs
+
+make PREFIX=/web/redis/ install
+```
+
+#### 管理脚本
+注意修改其中的 `EXEC`, `CLIEXEC`, `CONF` 几个变量.
+
+```bash
+cp utils/redis_init_script /etc/init.d/redis_6379
+chmod +x /etc/init.d/redis_6379
+chkconfig --add redis_6379
+chkconfig --level 2345 redis_6379 on
+chkconfig --listredis_6379
+```
+
 
 
 @todo 没完... 等待有空时再整理.
