@@ -9,7 +9,7 @@
 #### 版本约定
 
 ```bash
-VER_REDIS="redis-2.6.16"
+VER_REDIS="redis-2.8.7"
 ```
 
 #### 下载
